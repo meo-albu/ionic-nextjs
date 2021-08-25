@@ -1,13 +1,13 @@
 import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
 import { StatusBar, Style } from '@capacitor/status-bar';
 
-import { IonReactRouter } from '@ionic/react-router';
-import { Redirect, Route } from 'react-router-dom';
+import { IonReactRouter } from '@ionic/react-router'
+import { Redirect, Route } from 'react-router-dom'
 import Menu from './Menu';
 
 import Home from './pages/Home';
 import ApolloProvider from '../apollo/Provider'
-// import Words from '../pages/[slug]';
+import Category from './pages/Category';
 
 window.matchMedia("(prefers-color-scheme: dark)").addListener(async (status) => {
   try {
@@ -26,6 +26,7 @@ const AppShell = () => {
             <Menu />
             <IonRouterOutlet id="main">
               <Route path="/home" render={() => <Home />} />
+              <Route path="/category/:slug" render={(routeProps) => <Category slug={routeProps.match.params.slug} /> } />
               <Route exact path="/" render={() => <Redirect to="/home" />} />
             </IonRouterOutlet>
           </IonSplitPane>

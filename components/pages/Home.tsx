@@ -1,10 +1,7 @@
 import React from 'react'
 import { IonButtons, IonContent, IonHeader, IonItem, IonLabel, IonList, IonListHeader, IonLoading, IonMenuButton, IonPage, IonRouterOutlet, IonSelect, IonSelectOption, IonTitle, IonToolbar } from '@ionic/react'
 import { Heading } from '@driven-crm/lib'
-import { Route } from 'react-router-dom'
 import { gql, useQuery } from '@apollo/client'
-
-import Link from 'next/link'
 
 const Query = gql`
   query Query {
@@ -35,9 +32,6 @@ export default function Home() {
 
   return (
     <IonPage>
-      {/* <IonRouterOutlet>
-        <Route path="/category/:id" component={Words} exact={true} />
-      </IonRouterOutlet> */}
       <IonHeader>
         <IonToolbar>
           <IonTitle>Home</IonTitle>
@@ -60,24 +54,20 @@ export default function Home() {
           <div className='p-6 text-center text-gray-900'>
             <Heading level='3'>Learn German Language</Heading>
           </div>
-          <div className='bg-yellow-300 py-6 px-4 space-y-4 flex-1'>
+          <div className='bg-primary text-white py-6 px-4 space-y-4 flex-1'>
             <IonList style={{background: 'none'}}>
               <IonListHeader>
-                <IonLabel>Choose a category.</IonLabel>
+                <IonLabel><span className='text-white'>Choose a category.</span></IonLabel>
               </IonListHeader>
               {data?.getCategories.map(cat => (
-                <Link
-                  key={cat.slug}
-                  href={`/category/${cat.slug}`}
-                >
                 <IonItem
+                  key={cat.slug}
                   routerLink={`/category/${cat.slug}`}
                 >
                   <IonLabel className='p-6'>
                     {cat.title.english}
                   </IonLabel>
                 </IonItem>
-                </Link>
               ))}
             </IonList>
           </div>
